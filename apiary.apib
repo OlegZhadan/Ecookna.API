@@ -1,0 +1,53 @@
+FORMAT: 1A
+HOST: http://1c.ecookna.ru/api
+
+# Экоокна.УПП
+
+Описание API взаимодействия внешних систем с 1С: УПП.
+
+## Состояние оплат по заказам покупателей [/returnPaymentStatusByOrders]
+
+### Проверка состояния оплат списком [POST]
+
+Вы можете передать массив идентификаторов заказов покупателей 
+и система вернет Вам состояние оплаты по заказам согласно условий договора с клиентом.
+
++ Request (application/json)
+
+        {
+            "orders": [
+                "order_id_1",
+                "order_id_2",
+                ...,
+                "order_id_N"
+            ]
+        }
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+    
+    
+    + Body
+
+            {
+                "error_code": "Favourite programming language?",
+                "error_text": "2015-08-05T08:40:51.620Z",
+                "result": [
+                    {
+                        "orderID": "order_id_1",
+                        "order_prepaymentPercent_plan": 0,
+                        "order_prepaymentSumm_plan": 0,
+                        "order_paymentSumm_fact": 0,
+                        "contract_ammountOfDebt_plan": 0,
+                        "contract_ammountOfDebt_fact": 0,
+                        "order_has_been_paid": True
+                    }, 
+                    {
+                        ...
+                    }
+                ]
+            }
+            
+            
+## Состояние отгрузки по заказам покупателей [/returnShipmentStatusByOrders]
